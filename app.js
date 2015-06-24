@@ -1,6 +1,5 @@
-var Vantage = require('./node_modules/vantage/lib/vantage');
+var Vantage = require('vantage');
 var server = new Vantage();
-
 
 server
     .command('foo')
