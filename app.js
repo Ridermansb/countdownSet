@@ -1,15 +1,19 @@
 var Vantage = require('vantage');
 var server = new Vantage();
 
+var timers = [];
+
 server
-    .command('foo')
-    .description('Outputs "bar".')
+    .command('add <description>')
+    .option('-t, --time <time>', 'Countdown timer for this task.')
+    .description('Add timer to set.')
     .action(function(args, cb) {
-        console.log('bar');
+        timers.push({timer: args.options.time, description: args.description});
+        console.log(timers);
         cb();
     });
 
 server
-    .delimiter('webapp~$')
+    .delimiter('timer~$')
     .listen(8020)
     .show();
