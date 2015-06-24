@@ -19,7 +19,18 @@ server
     .description('Add timer to set.')
     .action(function(args, cb) {
         timers.push({timer: args.options.time, description: args.description});
-        console.log(timers);
+        cb();
+    });
+
+
+server
+    .command('show')
+    .description('Show timers in set.')
+    .action(function(args, cb) {
+        timers.forEach(function(timer) {
+            console.log('[%s] %s', timer.timer, timer.description);
+        });
+
         cb();
     });
 
